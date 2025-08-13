@@ -1,8 +1,14 @@
 #!/bin/bash
-echo "Installing dependencies..."
-sudo apt update -y
-sudo apt install -y python3 python3-pip
+set -e
+
+echo "Setting up virtual environment..."
+python3 -m venv venv
+source venv/bin/activate
+
+echo "Installing pytest in venv..."
+pip install --upgrade pip
+pip install pytest
 
 echo "Running tests..."
-pip3 install pytest
 pytest test_app.py
+
